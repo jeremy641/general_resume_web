@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>戴彥綸 - 軟體工程師 & AI研究員</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .skill-tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: inline-block;
+            margin: 0.25rem;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+            margin: 3rem 0;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 1.5rem;
+            width: 2px;
+            height: calc(100% + 1rem);
+            background: linear-gradient(to bottom, #667eea, transparent);
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .project-image:hover {
+            transform: scale(1.02);
+        }
+        
+        /* Lightbox styles */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.3s linear;
+        }
+        
+        .lightbox-overlay.visible {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .lightbox-close:hover {
+            color: #667eea;
+        }
+        
+        .nav-link {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: #667eea;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        
+        .floating-nav {
+            position: fixed;
+            top: 50%;
+            right: 2rem;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: none;
+        }
+        
+        @media (min-width: 1024px) {
+            .floating-nav {
+                display: block;
+            }
+        }
+        
+        .floating-nav a {
+            display: block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(102, 126, 234, 0.3);
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .floating-nav a.active,
+        .floating-nav a:hover {
+            background: #667eea;
+            transform: scale(1.5);
+        }
+        
+        .hero-animation {
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stagger-animation {
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .stagger-animation:nth-child(2) { animation-delay: 0.1s; }
+        .stagger-animation:nth-child(3) { animation-delay: 0.2s; }
+        .stagger-animation:nth-child(4) { animation-delay: 0.3s; }
+        .stagger-animation:nth-child(5) { animation-delay: 0.4s; }
+
+        /* Project Detail Modal */
+        .project-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.3s linear;
+            overflow-y: auto;
+        }
+        
+        .project-modal.visible {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .project-modal-content {
+            background: white;
+            border-radius: 1rem;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            position: relative;
+            margin: 2rem;
+        }
+        
+        .project-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .company-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            border-radius: 8px;
+            background: white;
+            padding: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-sm z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-xl font-bold text-gray-800">戴彥綸</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-600 hover:text-gray-900">首頁</a>
+                    <a href="#about" class="nav-link text-gray-600 hover:text-gray-900">關於我</a>
+                    <a href="#skills" class="nav-link text-gray-600 hover:text-gray-900">技能</a>
+                    <a href="#experience" class="nav-link text-gray-600 hover:text-gray-900">經歷</a>
+                    <a href="#projects" class="nav-link text-gray-600 hover:text-gray-900">專案</a>
+                    <a href="#contact" class="nav-link text-gray-600 hover:text-gray-900">聯絡</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 py-2 space-y-2">
+                <a href="#home" class="block py-2 text-gray-600">首頁</a>
+                <a href="#about" class="block py-2 text-gray-600">關於我</a>
+                <a href="#skills" class="block py-2 text-gray-600">技能</a>
+                <a href="#experience" class="block py-2 text-gray-600">經歷</a>
+                <a href="#projects" class="block py-2 text-gray-600">專案</a>
+                <a href="#contact" class="block py-2 text-gray-600">聯絡</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Floating Navigation -->
+    <div class="floating-nav">
+        <a href="#home" data-section="home"></a>
+        <a href="#about" data-section="about"></a>
+        <a href="#skills" data-section="skills"></a>
+        <a href="#experience" data-section="experience"></a>
+        <a href="#projects" data-section="projects"></a>
+        <a href="#contact" data-section="contact"></a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center gradient-bg">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <div class="hero-animation">
+                <img src="488206608_9050810115023609_6826461954879792641_n.jpg" alt="戴彥綸" class="w-32 h-32 rounded-full mx-auto mb-8 border-4 border-white shadow-lg">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">戴彥綸</h1>
+                <h2 class="text-xl md:text-2xl font-light mb-6">軟體工程師 & AI研究員</h2>
+                <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto opacity-90">
+                    專精於AI技術應用、軟體開發與教育科技，致力於透過創新技術解決實際問題
+                </p>
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <a href="https://github.com/jeremy641" target="_blank" class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-full transition-all duration-300">
+                        <i class="fab fa-github mr-2"></i>GitHub
+                    </a>
+                    <a href="https://www.linkedin.com/in/yan-lun-dai-6a5554211/" target="_blank" class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-full transition-all duration-300">
+                        <i class="fab fa-linkedin mr-2"></i>LinkedIn
+                    </a>
+                    <a href="https://jeremy641.github.io/teach_resume/" target="_blank" class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-full transition-all duration-300">
+                        <i class="fas fa-chalkboard-teacher mr-2"></i>教育履歷
+                    </a>
+                    <a href="mailto:jeremy641@gmail.com" class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-full transition-all duration-300">
+                        <i class="fas fa-envelope mr-2"></i>Email
+                    </a>
+                </div>
+                <a href="#about" class="inline-block animate-bounce">
+                    <i class="fas fa-chevron-down text-2xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">關於我</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="stagger-animation">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">技術多元的創新者</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        我是一名技術多元且創新的專業人才，專注於人工智慧（AI）技術的應用。目前攻讀北科大互動設計碩士班，具中原大學資訊管理學士及數位音樂學程背景，擅長Python、C#、Java等程式語言。
+                    </p>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        在職涯中，我於新唐科技擔任IC音訊工程師，負責音訊校正及MIDI參數處理。同時身為AI音樂研習營講師，教授AI音樂創作並出版高中微學程專書《AI音樂夢工廠》。
+                    </p>
+                    <p class="text-gray-600 leading-relaxed">
+                        身為樂團吉他手與混音編曲師，我的創作融合AI與藝術，展現跨領域創新潛力。
+                    </p>
+                </div>
+                
+                <div class="stagger-animation">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center p-6 bg-gray-50 rounded-lg card-hover">
+                            <i class="fas fa-code text-3xl text-purple-600 mb-4"></i>
+                            <h4 class="font-semibold text-gray-800 mb-2">軟體開發</h4>
+                            <p class="text-gray-600 text-sm">5+ 年經驗</p>
+                        </div>
+                        <div class="text-center p-6 bg-gray-50 rounded-lg card-hover">
+                            <i class="fas fa-brain text-3xl text-purple-600 mb-4"></i>
+                            <h4 class="font-semibold text-gray-800 mb-2">AI研究</h4>
+                            <p class="text-gray-600 text-sm">深度學習專家</p>
+                        </div>
+                        <div class="text-center p-6 bg-gray-50 rounded-lg card-hover">
+                            <i class="fas fa-music text-3xl text-purple-600 mb-4"></i>
+                            <h4 class="font-semibold text-gray-800 mb-2">音樂製作</h4>
+                            <p class="text-gray-600 text-sm">專業製作人</p>
+                        </div>
+                        <div class="text-center p-6 bg-gray-50 rounded-lg card-hover">
+                            <i class="fas fa-chalkboard-teacher text-3xl text-purple-600 mb-4"></i>
+                            <h4 class="font-semibold text-gray-800 mb-2">教育培訓</h4>
+                            <p class="text-gray-600 text-sm">資深講師</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">技能專長</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="stagger-animation">
+                    <div class="bg-white p-8 rounded-lg shadow-lg card-hover">
+                        <i class="fas fa-laptop-code text-4xl text-purple-600 mb-6"></i>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">程式開發</h3>
+                        <div class="flex flex-wrap">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">C#</span>
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">Unity</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stagger-animation">
+                    <div class="bg-white p-8 rounded-lg shadow-lg card-hover">
+                        <i class="fas fa-robot text-4xl text-purple-600 mb-6"></i>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">AI & 機器學習</h3>
+                        <div class="flex flex-wrap">
+                            <span class="skill-tag">Regression</span>
+                            <span class="skill-tag">Diffusion Model</span>
+                            <span class="skill-tag">Transformer</span>
+                            <span class="skill-tag">Unity ML-Agent</span>
+                            <span class="skill-tag">LLM Fine-tuning</span>
+                            <span class="skill-tag">Prompt Engineering</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stagger-animation">
+                    <div class="bg-white p-8 rounded-lg shadow-lg card-hover">
+                        <i class="fas fa-headphones text-4xl text-purple-600 mb-6"></i>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">音樂 & 音訊</h3>
+                        <div class="flex flex-wrap">
+                            <span class="skill-tag">混音</span>
+                            <span class="skill-tag">編曲</span>
+                            <span class="skill-tag">母帶後製</span>
+                            <span class="skill-tag">MIDI</span>
+                            <span class="skill-tag">SoundFont</span>
+                            <span class="skill-tag">IC音訊處理</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">工作經歷</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="timeline-item stagger-animation">
+                    <div class="bg-white p-6 rounded-lg shadow-lg card-hover">
+                        <div class="flex items-start gap-4 mb-4">
+                            <img src="Nuvoton.png" alt="新唐科技 Logo" class="company-logo">
+                            <div class="flex-1">
+                                <div class="flex flex-col md:flex-row md:justify-between md:items-start">
+                                    <div>
+                                        <h3 class="text-xl font-semibold text-gray-800">IC音訊設計工程師</h3>
+                                        <p class="text-purple-600 font-medium">新唐科技 (Nuvoton)</p>
+                                    </div>
+                                    <span class="text-gray-500 text-sm mt-2 md:mt-0">2024 - 現在</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• 負責音訊訊號校正與MIDI參數處理</li>
+                            <li>• 進行音源(Timbre)製作與音源庫建置</li>
+                            <li>• 執行韌體單元測試工作</li>
+                            <li>• 製作音源庫音源</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item stagger-animation">
+                    <div class="bg-white p-6 rounded-lg shadow-lg card-hover">
+                        <div class="flex items-start gap-4 mb-4">
+                            <img src="Taipei_tech.png" alt="北科大 Logo" class="company-logo">
+                            <div class="flex-1">
+                                <div class="flex flex-col md:flex-row md:justify-between md:items-start">
+                                    <div>
+                                        <h3 class="text-xl font-semibold text-gray-800">AI研究助理</h3>
+                                        <p class="text-purple-600 font-medium">國立臺北科技大學 AI實驗室</p>
+                                    </div>
+                                    <span class="text-gray-500 text-sm mt-2 md:mt-0">2023 - 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• LLM/Foundation Model Fine-tune研究</li>
+                            <li>• Unity ML-Agent專案助教</li>
+                            <li>• AI輔助教學平台開發</li>
+                            <li>• AI運動賦能系統研發</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item stagger-animation">
+                    <div class="bg-white p-6 rounded-lg shadow-lg card-hover">
+                        <div class="flex items-start gap-4 mb-4">
+                            <img src="246242228_108191308316882_7633484795312293661_n.jpg" alt="大勇國小 Logo" class="company-logo">
+                            <div class="flex-1">
+                                <div class="flex flex-col md:flex-row md:justify-between md:items-start">
+                                    <div>
+                                        <h3 class="text-xl font-semibold text-gray-800">科技藝術社團講師</h3>
+                                        <p class="text-purple-600 font-medium">桃園市立大勇國小</p>
+                                    </div>
+                                    <span class="text-gray-500 text-sm mt-2 md:mt-0">2023 - 現在</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• 教授Scratch、Micro:bit程式設計</li>
+                            <li>• Unity遊戲開發課程</li>
+                            <li>• 數位音樂與AI跨域課程</li>
+                            <li>• 3D列印與光固化技術教學</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item stagger-animation">
+                    <div class="bg-white p-6 rounded-lg shadow-lg card-hover">
+                        <div class="flex items-start gap-4 mb-4">
+                            <img src="4-16237396-844-logo.png" alt="泰宇出版社 Logo" class="company-logo">
+                            <div class="flex-1">
+                                <div class="flex flex-col md:flex-row md:justify-between md:items-start">
+                                    <div>
+                                        <h3 class="text-xl font-semibold text-gray-800">AI音樂研習營講師</h3>
+                                        <p class="text-purple-600 font-medium">泰宇出版社</p>
+                                    </div>
+                                    <span class="text-gray-500 text-sm mt-2 md:mt-0">2023 - 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• 組織海嗨人工智慧團隊並講授講師研習</li>
+                            <li>• 講授AI音樂作曲之研習教學課程</li>
+                            <li>• 已於台中曉明女中、宜蘭國華國中等學校進行授課</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">重點專案</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="stagger-animation">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openProjectModal('virtual-senior')">
+                        <img src="982728.png" alt="虛擬學長姐模型" class="project-image">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">虛擬學長姐 AI模型</h3>
+                            <p class="text-gray-600 mb-4">基於GPT-3.5 fine-tuning的虛擬學習助理，提供個性化學習指導與生涯規劃建議。</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">LLM Fine-tuning</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">教育科技</span>
+                            </div>
+                            <button class="text-purple-600 font-medium hover:underline">查看詳細 →</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stagger-animation">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openProjectModal('ai-fitness')">
+                        <img src="image09.png" alt="AI運動賦能系統" class="project-image">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">AI運動賦能系統</h3>
+                            <p class="text-gray-600 mb-4">結合Unity遊戲引擎與AI虛擬教練，透過遊戲化提升運動參與度的創新系統。</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">Unity</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">遊戲化</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">健康科技</span>
+                            </div>
+                            <button class="text-purple-600 font-medium hover:underline">查看詳細 →</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stagger-animation">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openProjectModal('ai-learning-companion')">
+                        <img src="9888.png" alt="AI虛擬學伴平台" class="project-image">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">AI虛擬學伴平台</h3>
+                            <p class="text-gray-600 mb-4">利用SillyTavern與GPT-4打造的智能學習夥伴，有效提升學習成效與動機。</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">GPT-4</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">教育AI</span>
+                            </div>
+                            <button class="text-purple-600 font-medium hover:underline">查看詳細 →</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stagger-animation">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openProjectModal('housing-prediction')">
+                        <img src="aay5y-gp5v6.png" alt="房屋出租預測模型" class="project-image">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">房屋出租速度預測</h3>
+                            <p class="text-gray-600 mb-4">使用XGBoost機器學習模型分析租屋市場，預測房屋出租速度的數據科學專案。</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">XGBoost</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">數據分析</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">機器學習</span>
+                            </div>
+                            <button class="text-purple-600 font-medium hover:underline">查看詳細 →</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stagger-animation">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openProjectModal('ai-music-book')">
+                        <img src="1B5FCA12-5ECE-42A4-A18F-2249390EBE0E.jpg" alt="AI音樂夢工廠書籍" class="project-image">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">AI音樂夢工廠</h3>
+                            <p class="text-gray-600 mb-4">出版高中微學程教科書，教授AI音樂創作技術，推廣AI在音樂教育的應用。</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">教育出版</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">AI音樂</span>
+                            </div>
+                            <button class="text-purple-600 font-medium hover:underline">查看詳細 →</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stagger-animation">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openProjectModal('unity-ml-agent')">
+                        <img src="IMG_6118.jpg" alt="Unity ML-Agent專案" class="project-image">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">Unity ML-Agent教學</h3>
+                            <p class="text-gray-600 mb-4">利用Unity ML-Agent平台研究與教授強化學習技術，結合遊戲開發與AI。</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">強化學習</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">Unity</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">教學</span>
+                            </div>
+                            <button class="text-purple-600 font-medium hover:underline">查看詳細 →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">聯絡我</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="stagger-animation">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-6">讓我們一起創造</h3>
+                        <p class="text-gray-600 leading-relaxed mb-8">
+                            我熱衷於透過技術創新解決實際問題，無論是AI研究、軟體開發還是教育科技，都歡迎與我交流合作。
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-purple-600 text-xl mr-4"></i>
+                                <div>
+                                    <p class="font-medium text-gray-800">Email</p>
+                                    <a href="mailto:jeremy641@gmail.com" class="text-gray-600 hover:text-purple-600">jeremy641@gmail.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <i class="fas fa-phone text-purple-600 text-xl mr-4"></i>
+                                <div>
+                                    <p class="font-medium text-gray-800">電話</p>
+                                    <a href="tel:0905630341" class="text-gray-600 hover:text-purple-600">0905-630-341</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-purple-600 text-xl mr-4"></i>
+                                <div>
+                                    <p class="font-medium text-gray-800">位置</p>
+                                    <p class="text-gray-600">桃園市中壢區 / 新竹縣竹北市</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex space-x-4 mt-8">
+                            <a href="https://github.com/jeremy641" target="_blank" class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-purple-600 hover:text-white transition-all duration-300">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/yan-lun-dai-6a5554211/" target="_blank" class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-purple-600 hover:text-white transition-all duration-300">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@jeremy641" target="_blank" class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-purple-600 hover:text-white transition-all duration-300">
+                                <i class="fab fa-youtube text-xl"></i>
+                            </a>
+                            <a href="https://www.cake.me/me/jeremy641" target="_blank" class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-purple-600 hover:text-white transition-all duration-300">
+                                <i class="fas fa-link text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="stagger-animation">
+                        <div class="bg-gray-50 p-8 rounded-lg">
+                            <h4 class="text-xl font-semibold text-gray-800 mb-6">快速聯絡</h4>
+                            <form class="space-y-4">
+                                <div>
+                                    <label class="block text-gray-700 text-sm font-medium mb-2">姓名</label>
+                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 text-sm font-medium mb-2">Email</label>
+                                    <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 text-sm font-medium mb-2">訊息</label>
+                                    <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-purple-600 text-white py-3 px-6 rounded-lg hover:bg-purple-700 transition-colors duration-300">
+                                    發送訊息
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2025 戴彥綸. All rights reserved.</p>
+            <p class="text-gray-400 mt-2">Built with passion for technology and innovation</p>
+        </div>
+    </footer>
+
+    <!-- Project Detail Modals -->
+    
+    <!-- Virtual Senior Modal -->
+    <div class="project-modal" id="virtual-senior-modal">
+        <div class="project-modal-content">
+            <button class="project-modal-close" onclick="closeProjectModal('virtual-senior')">&times;</button>
+            <div class="p-8">
+                <div class="text-center mb-8">
+                    <img src="982728.png" alt="虛擬學長姐模型" class="w-64 h-48 object-cover rounded-lg mx-auto mb-4">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">虛擬學長姐 AI模型</h2>
+                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">LLM Fine-tuning</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">教育科技</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">GPT-3.5</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">LLama Factory</span>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">專案願景</h3>
+                        <p class="text-gray-600 mb-4">
+                            建立一個隨時隨地可互動的「虛擬學長姐」，專為學弟妹提供即時建議與支持。模擬真實學長姐的角色，解答學業、生活與未來規劃相關問題。
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">技術實現</h3>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• 使用LLama Factory進行GPT-3.5模型fine-tuning</li>
+                            <li>• 收集並製作專業的訓練資料集</li>
+                            <li>• 針對學習指導場景優化模型回應</li>
+                            <li>• 實現個性化的對話體驗</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">功能特色</h3>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• <strong>即時回應：</strong>基於課程需求與學科特性，快速生成實用建議</li>
+                            <li>• <strong>個性化指導：</strong>透過機器學習分析學弟妹的背景與需求</li>
+                            <li>• <strong>學業支持：</strong>作業解答、學習資源推薦</li>
+                            <li>• <strong>生涯規劃：</strong>針對未來進修與職涯發展提供建議</li>
+                            <li>• <strong>情感交流：</strong>分享學長姐的學習故事，鼓勵學弟妹克服困難</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4 mt-6">未來展望</h3>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• 與學校現有系統整合，擴展到多個院系使用</li>
+                            <li>• 融合更多AI技術（如情感分析），提升建議的細緻度與溫度</li>
+                            <li>• 建立更完整的知識庫和學習資源連結</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Fitness Modal -->
+    <div class="project-modal" id="ai-fitness-modal">
+        <div class="project-modal-content">
+            <button class="project-modal-close" onclick="closeProjectModal('ai-fitness')">&times;</button>
+            <div class="p-8">
+                <div class="text-center mb-8">
+                    <img src="image09.png" alt="AI運動賦能系統" class="w-64 h-48 object-cover rounded-lg mx-auto mb-4">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">AI運動賦能系統</h2>
+                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">Unity</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">遊戲化</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">健康科技</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">Stable Diffusion</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">GPT-3.5</span>
+                    </div>
+                    <p class="text-sm text-gray-500">
+                        <strong>發表論文：</strong>
+                        <a href="https://doi.org/10.1049/icp.2024.4325" target="_blank" class="text-purple-600 hover:underline">
+                            ICE ICETA 2024 - "Enhancing Exercise Engagement through AI-driven Virtual Training and Game-Based Animation"
+                        </a>
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">研究目標</h3>
+                        <p class="text-gray-600 mb-4">
+                            透過結合AI虛擬教練與遊戲化互動，提升啞鈴抬舉等重複運動的趣味性與參與度。
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">系統設計</h3>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• <strong>AI虛擬教練：</strong>使用Stable Diffusion自訂教練形象（年齡、外貌、性格）</li>
+                            <li>• <strong>智能對話：</strong>GPT-3.5生成詳細的教練設定，結合ElevenLab的TTS提供即時語音激勵</li>
+                            <li>• <strong>遊戲互動：</strong>以Unity開發的互動式"乒乓球"遊戲為基礎</li>
+                            <li>• <strong>感測整合：</strong>啞鈴內建陀螺儀傳感器，透過舉啞鈴動作控制遊戲進程</li>
+                        </ul>
+                        
+                        <div class="mt-6">
+                            <img src="Fitness Game 流程圖.png" alt="健身遊戲流程圖" class="w-full rounded-lg shadow-md">
+                            <p class="text-sm text-gray-500 mt-2 text-center">系統架構流程圖</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">實驗結果</h3>
+                        <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">實驗設計</h4>
+                            <ul class="text-gray-600 space-y-1 text-sm">
+                                <li>• 參與者：21名大學生</li>
+                                <li>• 分組：傳統運動組 vs 虛擬教練互動組</li>
+                                <li>• 測量指標：心率、熱量消耗、運動樂趣評分</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-green-50 p-4 rounded-lg mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">主要發現</h4>
+                            <ul class="text-gray-600 space-y-1 text-sm">
+                                <li>• 心率與熱量消耗無顯著差異</li>
+                                <li>• 使用虛擬教練組的運動樂趣評分顯著提升</li>
+                                <li>• 參與者表現出更高的持續性與愉悅感</li>
+                            </ul>
+                        </div>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">主要結論</h3>
+                        <p class="text-gray-600">
+                            虛擬教練與動態遊戲畫面有效提升重複性運動的興趣與參與度，雖然對運動量影響不大，但激發了更高的持續性與愉悅感。
+                        </p>
+                        
+                        <div class="mt-6">
+                            <img src="IMG_0932.jpg" alt="實驗設備" class="w-full rounded-lg shadow-md">
+                            <p class="text-sm text-gray-500 mt-2 text-center">實驗設備與環境</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Learning Companion Modal -->
+    <div class="project-modal" id="ai-learning-companion-modal">
+        <div class="project-modal-content">
+            <button class="project-modal-close" onclick="closeProjectModal('ai-learning-companion')">&times;</button>
+            <div class="p-8">
+                <div class="text-center mb-8">
+                    <img src="9888.png" alt="AI虛擬學伴平台" class="w-64 h-48 object-cover rounded-lg mx-auto mb-4">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">AI虛擬學伴平台</h2>
+                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">GPT-4</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">教育AI</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">SillyTavern</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">Prompt Engineering</span>
+                    </div>
+                    <p class="text-sm text-gray-500">
+                        <strong>發表論文：</strong>
+                        <a href="https://doi.org/10.1049/icp.2024.4176" target="_blank" class="text-purple-600 hover:underline">
+                            ICE ICETA 2024 - "AI-Assisted Design Education - Boosting Rapid Prototyping Skills in Design Students"
+                        </a>
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">研究背景</h3>
+                        <p class="text-gray-600 mb-4">
+                            針對互動設計系大學二年級程式教育中，學習動機不足、學生個別差異大的挑戰，設計以「AI虛擬學伴」為核心的解決方案。
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">技術平台</h3>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• <strong>SillyTavern：</strong>提供交互式學習輔助介面</li>
+                            <li>• <strong>GPT-4：</strong>核心AI對話引擎</li>
+                            <li>• <strong>Prompt Engineering：</strong>調控GPT-4的角色定位</li>
+                            <li>• <strong>個性化設計：</strong>根據學生需求動態調整</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">研究目標</h3>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• 探索AI虛擬學伴如何降低學習者認知負荷</li>
+                            <li>• 驗證個性化教學策略對學習動機和成效的提升效果</li>
+                            <li>• 創建能即時回饋與動態調整教學內容的對話系統</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">實驗設計</h3>
+                        <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                            <ul class="text-gray-600 space-y-1 text-sm">
+                                <li>• <strong>實驗組：</strong>使用SillyTavern AI虛擬學伴輔助學習</li>
+                                <li>• <strong>對照組：</strong>傳統課堂教學</li>
+                                <li>• <strong>評估工具：</strong>考試成績、IMI內在動機問卷</li>
+                            </ul>
+                        </div>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">研究成果</h3>
+                        <div class="bg-green-50 p-4 rounded-lg mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">量化結果</h4>
+                            <ul class="text-gray-600 space-y-1 text-sm">
+                                <li>• 學生平均考試成績提升至83.37分</li>
+                                <li>• 標準差僅15.743，顯示學習成效穩定</li>
+                                <li>• IMI問卷顯示學生成就感、實用性評價顯著高於中位數</li>
+                                <li>• AI助學效果佳，有效降低學習者認知負荷</li>
+                            </ul>
+                        </div>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">未來發展</h3>
+                        <p class="text-gray-600">
+                            雖興趣分數中等，仍顯示AI助學效果佳，未來應增加更多主題與自主探索空間，進一步提升學習體驗。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Housing Prediction Modal -->
+    <div class="project-modal" id="housing-prediction-modal">
+        <div class="project-modal-content">
+            <button class="project-modal-close" onclick="closeProjectModal('housing-prediction')">&times;</button>
+            <div class="p-8">
+                <div class="text-center mb-8">
+                    <img src="aay5y-gp5v6.png" alt="房屋出租預測模型" class="w-64 h-48 object-cover rounded-lg mx-auto mb-4">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">房屋出租速度預測</h2>
+                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">XGBoost</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">數據分析</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">機器學習</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">QGIS</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">Python</span>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">專案概述</h3>
+                        <p class="text-gray-600 mb-4">
+                            聚焦於捷運周邊租屋市場，分析影響出租速度的關鍵因素及趨勢，旨在提高市場資訊透明度。專案利用爬蟲技術收集台灣民間租屋資料，結合QGIS和XGBoost回歸模型進行分析。
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">資料分析</h3>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• 出租所需天數主要集中在0-10天，顯示大多數房屋出租速度較快</li>
+                            <li>• 少數樣本出租所需天數超過20天，形成典型的右偏分布</li>
+                            <li>• 採用對數轉換技術，有效消除長尾效應</li>
+                            <li>• 使數據分布更加接近正態分布，提升模型預測效能</li>
+                        </ul>
+                        
+                        <div class="mt-6 grid grid-cols-2 gap-2">
+                            <img src="220953.png" alt="XGBoost模型結果" class="w-full rounded-lg shadow-md">
+                            <img src="image0000.png" alt="數據視覺化" class="w-full rounded-lg shadow-md">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">模型應用</h3>
+                        <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">技術特色</h4>
+                            <ul class="text-gray-600 space-y-1 text-sm">
+                                <li>• 使用XGBoost回歸模型進行分析</li>
+                                <li>• 透過正則化處理，減少多變量間的共線性影響</li>
+                                <li>• 使特徵權重估計更穩定</li>
+                                <li>• 結合地理資訊系統(QGIS)進行空間分析</li>
+                            </ul>
+                        </div>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">重要發現</h3>
+                        <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                            <ul class="text-gray-600 space-y-1 text-sm">
+                                <li>• 發現「押金月數」等特徵對出租速度有顯著影響</li>
+                                <li>• 押金越高，出租速度越慢</li>
+                                <li>• 部分變數如捷運站距離的影響力不顯著，出乎意料</li>
+                                <li>• 模型的最佳分數和RMSE顯示其在捕捉整體數據趨勢方面表現出色</li>
+                            </ul>
+                        </div>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">應用價值</h3>
+                        <p class="text-gray-600">
+                            結果為未來租屋市場策略提供有價值參考，有助於房東制定合理的租金和押金策略，提升出租效率。
+                        </p>
+                        
+                        <div class="mt-6 grid grid-cols-2 gap-2">
+                            <img src="image88888.png" alt="特徵重要性分析" class="w-full rounded-lg shadow-md">
+                            <img src="image888888.png" alt="預測結果" class="w-full rounded-lg shadow-md">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Music Book Modal -->
+    <div class="project-modal" id="ai-music-book-modal">
+        <div class="project-modal-content">
+            <button class="project-modal-close" onclick="closeProjectModal('ai-music-book')">&times;</button>
+            <div class="p-8">
+                <div class="text-center mb-8">
+                    <img src="1B5FCA12-5ECE-42A4-A18F-2249390EBE0E.jpg" alt="AI音樂夢工廠書籍" class="w-64 h-80 object-cover rounded-lg mx-auto mb-4">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">AI音樂夢工廠</h2>
+                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">教育出版</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">AI音樂</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">高中教育</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">泰宇出版社</span>
+                    </div>
+                    <p class="text-sm text-gray-500">
+                        <strong>出版資訊：</strong>AI音樂夢工廠:AI帶你輕鬆玩音樂 (2024)。新北市：泰宇出版社。
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">教材特色</h3>
+                        <p class="text-gray-600 mb-4">
+                            這是一本專為高中微學程設計的AI音樂創作教科書，結合理論與實作，引導學生探索人工智慧在音樂創作領域的無限可能。
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">內容架構</h3>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• <strong>AI音樂基礎：</strong>介紹人工智慧在音樂領域的應用原理</li>
+                            <li>• <strong>創作工具：</strong>教授各種AI音樂生成工具的使用方法</li>
+                            <li>• <strong>實作練習：</strong>透過專案導向學習，讓學生親手創作AI音樂</li>
+                            <li>• <strong>創意發想：</strong>培養學生結合科技與藝術的創新思維</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">教學目標</h3>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• 培養學生對AI技術的基本認知</li>
+                            <li>• 提升音樂創作與欣賞能力</li>
+                            <li>• 激發跨領域學習興趣</li>
+                            <li>• 建立科技與藝術結合的概念</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">推廣成果</h3>
+                        <div class="bg-green-50 p-4 rounded-lg mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">授課學校</h4>
+                            <ul class="text-gray-600 space-y-1 text-sm">
+                                <li>• 台中曉明女中</li>
+                                <li>• 宜蘭國華國中</li>
+                                <li>• 宜蘭羅東高中</li>
+                                <li>• 淡水淡江高中</li>
+                            </ul>
+                        </div>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">教學特色</h3>
+                        <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                            <ul class="text-gray-600 space-y-1 text-sm">
+                                <li>• 結合理論與實作的教學設計</li>
+                                <li>• 使用最新的AI音樂生成工具</li>
+                                <li>• 專案導向的學習方式</li>
+                                <li>• 培養創意思維與技術能力</li>
+                            </ul>
+                        </div>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">影響與意義</h3>
+                        <p class="text-gray-600 mb-4">
+                            這本教科書不僅填補了AI音樂教育的空白，更為台灣的科技教育注入新的活力，讓學生能夠在高中階段就接觸到前沿的AI技術應用。
+                        </p>
+                        
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-gray-800 mb-2">未來展望</h4>
+                            <p class="text-gray-600 text-sm">
+                                持續更新教材內容，跟上AI技術發展腳步，並擴大推廣範圍，讓更多學生能夠受益於AI音樂教育。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Unity ML-Agent Modal -->
+    <div class="project-modal" id="unity-ml-agent-modal">
+        <div class="project-modal-content">
+            <button class="project-modal-close" onclick="closeProjectModal('unity-ml-agent')">&times;</button>
+            <div class="p-8">
+                <div class="text-center mb-8">
+                    <img src="IMG_6118.jpg" alt="Unity ML-Agent專案" class="w-64 h-48 object-cover rounded-lg mx-auto mb-4">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Unity ML-Agent教學專案</h2>
+                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">強化學習</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">Unity</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">教學</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">遊戲AI</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">機器學習</span>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">專案目標</h3>
+                        <p class="text-gray-600 mb-4">
+                            利用Unity ML-Agent平台，研究與教授強化學習技術的應用。幫助學生理解強化學習的原理並運用於遊戲開發，提升遊戲設計的創意與技術深度。
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">課程設計</h3>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• <strong>基礎介紹：</strong>Unity ML-Agent工具與安裝設定</li>
+                            <li>• <strong>理論講解：</strong>強化學習基本概念與原理</li>
+                            <li>• <strong>實作練習：</strong>從簡單到複雜的專案實作</li>
+                            <li>• <strong>應用探索：</strong>遊戲AI的實際應用場景</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">實作項目</h3>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <ul class="text-gray-600 space-y-2 text-sm">
+                                <li>• <strong>球追方塊：</strong>設計虛擬代理學習追蹤目標</li>
+                                <li>• <strong>3D環境：</strong>創建複雜的3D強化學習環境</li>
+                                <li>• <strong>乒乓球比賽：</strong>模擬乒乓球比賽的AI對戰</li>
+                                <li>• <strong>自適應難度：</strong>探索動態難度調節機制</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">教學成果</h3>
+                        <div class="bg-green-50 p-4 rounded-lg mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">學習效果</h4>
+                            <ul class="text-gray-600 space-y-1 text-sm">
+                                <li>• 學生成功掌握強化學習基本概念</li>
+                                <li>• 能夠獨立完成ML-Agent專案開發</li>
+                                <li>• 提升了遊戲開發的技術深度</li>
+                                <li>• 激發了對AI技術的學習興趣</li>
+                            </ul>
+                        </div>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">預期成果</h3>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• <strong>跨領域應用：</strong>強化跨領域知識應用，結合遊戲設計與人工智慧</li>
+                            <li>• <strong>遊戲AI開發：</strong>開發基於強化學習的遊戲代理，提升遊戲互動性</li>
+                            <li>• <strong>智能系統：</strong>探索自適應遊戲難度調節機制，增加玩家體驗深度</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">技術特色</h3>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <ul class="text-gray-600 space-y-1 text-sm">
+                                <li>• 結合理論與實作的教學方式</li>
+                                <li>• 使用業界標準的ML-Agent框架</li>
+                                <li>• 從基礎到進階的漸進式學習</li>
+                                <li>• 強調實際應用與創新思維</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mt-6">
+                            <h4 class="font-semibold text-gray-800 mb-2">助教角色</h4>
+                            <p class="text-gray-600 text-sm">
+                                作為專案助教，協助指導大學部學生完成機器學習專案，提供技術支援和學習指導，確保每位學生都能掌握核心概念並完成實作。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox-overlay" id="lightboxOverlay">
+        <span class="lightbox-close" id="lightboxClose">×</span>
+        <div class="lightbox-content">
+            <img src="" alt="Expanded Image" id="lightboxImage">
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Floating navigation active state
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.floating-nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-section') === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Project Modal Functions
+        function openProjectModal(projectId) {
+            const modal = document.getElementById(projectId + '-modal');
+            if (modal) {
+                modal.classList.add('visible');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeProjectModal(projectId) {
+            const modal = document.getElementById(projectId + '-modal');
+            if (modal) {
+                modal.classList.remove('visible');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal when clicking outside
+        document.querySelectorAll('.project-modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('visible');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.project-modal.visible').forEach(modal => {
+                    modal.classList.remove('visible');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
+
+        // Lightbox functionality
+        const lightboxOverlay = document.getElementById('lightboxOverlay');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const projectImages = document.querySelectorAll('.project-image');
+
+        projectImages.forEach(image => {
+            image.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent modal from opening
+                lightboxImage.src = this.src;
+                lightboxOverlay.classList.add('visible');
+            });
+        });
+
+        // Also add lightbox to modal images
+        document.querySelectorAll('.project-modal img').forEach(image => {
+            image.addEventListener('click', function() {
+                lightboxImage.src = this.src;
+                lightboxOverlay.classList.add('visible');
+            });
+        });
+
+        lightboxClose.addEventListener('click', function() {
+            lightboxOverlay.classList.remove('visible');
+        });
+
+        lightboxOverlay.addEventListener('click', function(e) {
+            if (e.target === lightboxOverlay) {
+                lightboxOverlay.classList.remove('visible');
+            }
+        });
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightboxOverlay.classList.contains('visible')) {
+                lightboxOverlay.classList.remove('visible');
+            }
+        });
+
+        // Form submission (placeholder)
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('感謝您的訊息！我會盡快回覆您。');
+        });
+    </script>
+</body>
+</html>
