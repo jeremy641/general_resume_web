@@ -901,22 +901,7 @@
                 
                 <div class="stagger-animation">
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openProjectModal('virtual-senior')">
-                        <div class="project-carousel" data-project="virtual-senior">
-                            <div class="project-carousel-container">
-                                <div class="project-carousel-slide">
-                                    <img src="982728.png" alt="虛擬學長姐模型" class="project-image">
-                                </div>
-                                <div class="project-carousel-slide">
-                                    <img src="9888.png" alt="AI虛擬學伴平台" class="project-image">
-                                </div>
-                            </div>
-                            <button class="carousel-btn prev" onclick="event.stopPropagation(); prevSlide('virtual-senior')">‹</button>
-                            <button class="carousel-btn next" onclick="event.stopPropagation(); nextSlide('virtual-senior')">›</button>
-                            <div class="carousel-indicators">
-                                <span class="carousel-indicator active" onclick="event.stopPropagation(); goToSlide('virtual-senior', 0)"></span>
-                                <span class="carousel-indicator" onclick="event.stopPropagation(); goToSlide('virtual-senior', 1)"></span>
-                            </div>
-                        </div>
+                        <img src="982728.png" alt="虛擬學長姐模型" class="project-image">
                         <div class="p-6">
                             <h3 class="text-xl font-semibold text-gray-800 mb-3">虛擬學長姐 AI模型</h3>
                             <p class="text-gray-600 mb-4">基於GPT-3.5 fine-tuning的虛擬學習助理，提供個性化學習指導與生涯規劃建議。</p>
@@ -966,22 +951,7 @@
                 
                 <div class="stagger-animation">
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openProjectModal('ai-learning-companion')">
-                        <div class="project-carousel" data-project="ai-learning-companion">
-                            <div class="project-carousel-container">
-                                <div class="project-carousel-slide">
-                                    <img src="9888.png" alt="AI虛擬學伴平台" class="project-image">
-                                </div>
-                                <div class="project-carousel-slide">
-                                    <img src="982728.png" alt="虛擬學長姐模型" class="project-image">
-                                </div>
-                            </div>
-                            <button class="carousel-btn prev" onclick="event.stopPropagation(); prevSlide('ai-learning-companion')">‹</button>
-                            <button class="carousel-btn next" onclick="event.stopPropagation(); nextSlide('ai-learning-companion')">›</button>
-                            <div class="carousel-indicators">
-                                <span class="carousel-indicator active" onclick="event.stopPropagation(); goToSlide('ai-learning-companion', 0)"></span>
-                                <span class="carousel-indicator" onclick="event.stopPropagation(); goToSlide('ai-learning-companion', 1)"></span>
-                            </div>
-                        </div>
+                        <img src="9888.png" alt="AI虛擬學伴平台" class="project-image">
                         <div class="p-6">
                             <h3 class="text-xl font-semibold text-gray-800 mb-3">AI虛擬學伴平台</h3>
                             <p class="text-gray-600 mb-4">利用SillyTavern與GPT-4打造的智能學習夥伴，有效提升學習成效與動機。</p>
@@ -1283,7 +1253,10 @@
                                 </div>
                                 <div>
                                     <label class="block text-gray-700 text-sm font-medium mb-2">Email *</label>
-                                    <input type="email" id="user_email" name="user_email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
+                                    <input type="email" id="user_email" name="user_email" required 
+                                           pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                                           title="請輸入有效的郵箱地址，例如：example@gmail.com"
+                                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
                                 </div>
                                 <div>
                                     <label class="block text-gray-700 text-sm font-medium mb-2">訊息 *</label>
