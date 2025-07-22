@@ -106,7 +106,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 3000;
             visibility: hidden;
             opacity: 0;
             transition: visibility 0s, opacity 0.3s linear;
@@ -313,6 +313,7 @@
                 <a href="#home" class="block py-2 text-gray-600">首頁</a>
                 <a href="#about" class="block py-2 text-gray-600">關於我</a>
                 <a href="#skills" class="block py-2 text-gray-600">技能</a>
+                <a href="#education" class="block py-2 text-gray-600">學歷</a>
                 <a href="#experience" class="block py-2 text-gray-600">經歷</a>
                 <a href="#projects" class="block py-2 text-gray-600">專案</a>
                 <a href="#contact" class="block py-2 text-gray-600">聯絡</a>
@@ -530,9 +531,7 @@
                 <div class="timeline-item stagger-animation">
                     <div class="bg-white p-6 rounded-lg shadow-lg card-hover">
                         <div class="flex items-start gap-4 mb-4">
-                            <div class="w-16 h-16 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-music text-white text-2xl"></i>
-                            </div>
+                            <img src="CYCU.png" alt="中原大學 Logo" class="company-logo">   
                             <div class="flex-1">
                                 <div class="flex flex-col md:flex-row md:justify-between md:items-start">
                                     <div>
@@ -567,6 +566,29 @@
                 <div class="timeline-item stagger-animation">
                     <div class="bg-white p-6 rounded-lg shadow-lg card-hover">
                         <div class="flex items-start gap-4 mb-4">
+                            <img src="nuts-removebg-preview.png" alt="核果資訊學苑 Logo" class="company-logo">
+                            <div class="flex-1">
+                                <div class="flex flex-col md:flex-row md:justify-between md:items-start">
+                                    <div>
+                                        <h3 class="text-xl font-semibold text-gray-800">講師暨講師培訓講師</h3>
+                                        <p class="text-purple-600 font-medium">核果資訊學苑 Nuts Institute</p>
+                                    </div>
+                                    <span class="text-gray-500 text-sm mt-2 md:mt-0">2025 - 現在</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• 教授 Scratch、Micro:bit、網頁設計、Unity 2D/3D 及數位音樂製作等課程</li>
+                            <li>• 協助培訓新進講師，提升教學品質與專業能力</li>
+                            <li>• 設計跨領域課程內容，結合程式設計與創意思維</li>
+                            <li>• 推廣科技教育，培養學生邏輯思維與創新能力</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item stagger-animation">
+                    <div class="bg-white p-6 rounded-lg shadow-lg card-hover">
+                        <div class="flex items-start gap-4 mb-4">
                             <img src="Nuvoton.png" alt="新唐科技 Logo" class="company-logo">
                             <div class="flex-1">
                                 <div class="flex flex-col md:flex-row md:justify-between md:items-start">
@@ -590,12 +612,35 @@
                 <div class="timeline-item stagger-animation">
                     <div class="bg-white p-6 rounded-lg shadow-lg card-hover">
                         <div class="flex items-start gap-4 mb-4">
+                            <img src="nuts-removebg-preview.png" alt="核果資訊學苑 Logo" class="company-logo">
+                            <div class="flex-1">
+                                <div class="flex flex-col md:flex-row md:justify-between md:items-start">
+                                    <div>
+                                        <h3 class="text-xl font-semibold text-gray-800">講師暨講師培訓講師</h3>
+                                        <p class="text-purple-600 font-medium">核果資訊學苑 Nuts Institute</p>
+                                    </div>
+                                    <span class="text-gray-500 text-sm mt-2 md:mt-0">2020 - 2022</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• 教授 Scratch、Micro:bit、網頁設計、Unity 2D/3D 及數位音樂製作等課程</li>
+                            <li>• 協助培訓新進講師，提升教學品質與專業能力</li>
+                            <li>• 設計跨領域課程內容，結合程式設計與創意思維</li>
+                            <li>• 推廣科技教育，培養學生邏輯思維與創新能力</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item stagger-animation">
+                    <div class="bg-white p-6 rounded-lg shadow-lg card-hover">
+                        <div class="flex items-start gap-4 mb-4">
                             <img src="Taipei_tech.png" alt="北科大 Logo" class="company-logo">
                             <div class="flex-1">
                                 <div class="flex flex-col md:flex-row md:justify-between md:items-start">
                                     <div>
                                         <h3 class="text-xl font-semibold text-gray-800">AI研究助理</h3>
-                                        <p class="text-purple-600 font-medium">國立臺北科技大學 AI實驗室</p>
+                                        <p class="text-purple-600 font-medium">國立臺北科技大學 互動設計系 AI媒體實驗室</p>
                                     </div>
                                     <span class="text-gray-500 text-sm mt-2 md:mt-0">2023 - 2025</span>
                                 </div>
@@ -759,6 +804,23 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="stagger-animation">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openProjectModal('sound-jump-dragon')">
+                        <img src="0b88bbf3-2825-4c24-9e59-b8ca55032fb2.png" alt="聲動跳龍樁" class="project-image">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">聲動跳龍樁 SoundJumpDragon</h3>
+                            <p class="text-gray-600 mb-4">結合台灣民俗文化與聲音互動技術的互動藝術遊戲，現於台灣多座國際機場常設展出。</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">Unity</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">PHP</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">互動藝術</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">文化科技</span>
+                            </div>
+                            <button class="text-purple-600 font-medium hover:underline">查看詳細 →</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -819,7 +881,7 @@
                                     </div>
                                     <span class="px-3 py-1 bg-yellow-200 text-yellow-800 rounded-full text-sm font-medium">佳作</span>
                                 </div>
-                                <img src="music_awards.jpg" alt="苗栗縣音樂廉想創作歌曲比賽獎狀" class="w-full h-32 object-cover rounded-lg cursor-pointer" onclick="openLightbox(this.src)">
+                                <img src="music_awards.JPG" alt="苗栗縣音樂廉想創作歌曲比賽獎狀" class="w-full h-32 object-cover rounded-lg cursor-pointer" onclick="openLightbox(this.src)">
                             </div>
                             <div class="bg-yellow-50 p-3 rounded-lg">
                                 <div class="flex justify-between items-start mb-3">
@@ -840,7 +902,7 @@
                                     </div>
                                     <span class="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm font-medium">銀獎</span>
                                 </div>
-                                <img src="DSC02388.jpg" alt="永續生活實驗室競賽獎狀" class="w-full h-32 object-cover rounded-lg cursor-pointer" onclick="openLightbox(this.src)">
+                                <img src="DSC02388.JPG" alt="永續生活實驗室競賽獎狀" class="w-full h-32 object-cover rounded-lg cursor-pointer" onclick="openLightbox(this.src)">
                             </div>
                             <div class="bg-orange-50 p-3 rounded-lg">
                                 <div class="flex justify-between items-start mb-3">
@@ -1485,6 +1547,117 @@
                             <p class="text-gray-600 text-sm">
                                 作為專案助教，協助指導大學部學生完成機器學習專案，提供技術支援和學習指導，確保每位學生都能掌握核心概念並完成實作。
                             </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sound Jump Dragon Modal -->
+    <div class="project-modal" id="sound-jump-dragon-modal">
+        <div class="project-modal-content">
+            <button class="project-modal-close" onclick="closeProjectModal('sound-jump-dragon')">&times;</button>
+            <div class="p-8">
+                <div class="text-center mb-8">
+                    <img src="0b88bbf3-2825-4c24-9e59-b8ca55032fb2.png" alt="聲動跳龍樁" class="w-64 h-48 object-cover rounded-lg mx-auto mb-4">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">聲動跳龍樁 SoundJumpDragon</h2>
+                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">Unity</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">PHP</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">互動藝術</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">文化科技</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">聲音互動</span>
+                    </div>
+                    <p class="text-sm text-gray-500 mb-4">
+                        <strong>展出地點：</strong>松山機場、桃園國際機場 T1 & T2、台中國際機場、高雄國際機場
+                    </p>
+                    <p class="text-sm text-gray-500">
+                        <strong>支持單位：</strong>昇恆昌「逗陣藝起」計畫
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">專案簡介</h3>
+                        <p class="text-gray-600 mb-4">
+                            《聲動跳龍樁》是一款結合台灣民俗文化與聲音互動技術的互動藝術遊戲，玩家透過「聲音大小」來控制畫面中舞龍角色的跳躍力道，挑戰不同高度與距離的平台，體驗虛擬舞龍的樂趣。
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">技術架構</h3>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• <strong>Unity前端：</strong>2D橫向跳躍遊戲邏輯，聲音控制跳躍機制</li>
+                            <li>• <strong>PHP後端：</strong>資料儲存伺服器，管理遊玩記錄與成績</li>
+                            <li>• <strong>聲音感測：</strong>麥克風輸入與實時分貝偵測</li>
+                            <li>• <strong>硬體整合：</strong>配合各機場現場裝置優化</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">文化特色</h3>
+                        <div class="bg-orange-50 p-4 rounded-lg">
+                            <ul class="text-gray-600 space-y-1 text-sm">
+                                <li>• 以「跳龍樁」為核心意象，融合數位互動與地方文化</li>
+                                <li>• 強化台灣民俗藝術的數位再現</li>
+                                <li>• 提升國際文化交流形象</li>
+                                <li>• 吸引不同年齡層觀眾參與</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mt-6">
+                            <h4 class="font-semibold text-gray-800 mb-2">Demo演示影片</h4>
+                            <div class="relative w-full" style="padding-bottom: 36.8%;">
+                                <iframe 
+                                    class="absolute top-0 left-0 w-full h-full rounded-lg"
+                                    src="https://www.youtube.com/embed/oWPdChJFphw" 
+                                    title="龍樁示範" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">技術實作</h3>
+                        <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">Unity前端互動設計</h4>
+                            <ul class="text-gray-600 space-y-1 text-sm">
+                                <li>• 製作2D橫向跳躍遊戲邏輯</li>
+                                <li>• 實現聲音控制跳躍高度、跳遠距離機制</li>
+                                <li>• 設計舞龍動畫與視覺場景</li>
+                                <li>• 強調「聲越大跳越高」的直觀操作體驗</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-green-50 p-4 rounded-lg mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">後端伺服器建置</h4>
+                            <ul class="text-gray-600 space-y-1 text-sm">
+                                <li>• 架設與Unity串接的資料儲存伺服器</li>
+                                <li>• 管理玩家遊玩記錄、最高成績</li>
+                                <li>• 互動照片自動上傳與QRcode分享系統</li>
+                                <li>• 支援自動拍照與分享功能</li>
+                            </ul>
+                        </div>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">成效與特色</h3>
+                        <div class="bg-yellow-50 p-4 rounded-lg mb-4">
+                            <ul class="text-gray-600 space-y-1 text-sm">
+                                <li>• 吸引眾多旅客駐足與參與互動，成為展區亮點</li>
+                                <li>• 支援自動拍照與QR code分享功能，提升參與感</li>
+                                <li>• 運用AI音量感測與Unity遊戲整合，展示創新互動形式</li>
+                                <li>• 現於台灣多座國際機場設有常設展出</li>
+                            </ul>
+                        </div>
+                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">專案圖片展示</h3>
+                        <div class="grid grid-cols-3 gap-2">
+                            <img src="5e99abe6-18fe-4e9f-a5b7-7babe47f2298.png" alt="展場實況1" class="w-full h-20 object-cover rounded cursor-pointer" onclick="openLightbox(this.src)">
+                            <img src="6a4a893a-7ddb-4157-bd0f-6a356093f7ad.png" alt="展場實況2" class="w-full h-20 object-cover rounded cursor-pointer" onclick="openLightbox(this.src)">
+                            <img src="78ca08b0-1fc5-4fbf-944e-85ecf043e1da.png" alt="遊戲畫面1" class="w-full h-20 object-cover rounded cursor-pointer" onclick="openLightbox(this.src)">
+                            <img src="8235a807-6874-4c75-9c60-c356beb5a3f6.png" alt="遊戲畫面2" class="w-full h-20 object-cover rounded cursor-pointer" onclick="openLightbox(this.src)">
+                            <img src="a4214cad-4770-4882-85bf-2b9817f4ff08.png" alt="互動體驗" class="w-full h-20 object-cover rounded cursor-pointer" onclick="openLightbox(this.src)">
+                            <img src="ae4c538b-8368-43ca-839c-6e6de8fb194d.png" alt="機場展示" class="w-full h-20 object-cover rounded cursor-pointer" onclick="openLightbox(this.src)">
                         </div>
                     </div>
                 </div>
