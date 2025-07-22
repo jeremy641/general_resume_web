@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -283,6 +284,94 @@
             padding: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
+
+        /* Project Image Carousel */
+        .project-carousel {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-carousel-container {
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+
+        .project-carousel-slide {
+            min-width: 100%;
+            flex-shrink: 0;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            z-index: 10;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .project-carousel:hover .carousel-btn {
+            opacity: 1;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(102, 126, 234, 0.9);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-btn.prev {
+            left: 10px;
+        }
+
+        .carousel-btn.next {
+            right: 10px;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .carousel-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-indicator.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        /* Profile Image Clickable */
+        .profile-image {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -337,7 +426,7 @@
     <section id="home" class="min-h-screen flex items-center gradient-bg">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
             <div class="hero-animation">
-                <img src="488206608_9050810115023609_6826461954879792641_n.jpg" alt="戴彥綸" class="w-32 h-32 rounded-full mx-auto mb-8 border-4 border-white shadow-lg object-cover">
+                <img src="488206608_9050810115023609_6826461954879792641_n.jpg" alt="戴彥綸" class="w-32 h-32 rounded-full mx-auto mb-8 border-4 border-white shadow-lg object-cover profile-image" onclick="openLightbox(this.src)">
                 <h1 class="text-4xl md:text-6xl font-bold mb-4">戴彥綸</h1>
                 <p class="text-lg md:text-xl font-medium mb-2 opacity-90">Jeremy Dai</p>
                 <h2 class="text-xl md:text-2xl font-light mb-6">軟體工程師 & AI研究員</h2>
@@ -741,7 +830,26 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="stagger-animation">
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openProjectModal('sound-jump-dragon')">
-                        <img src="cadaba03-51ce-4e49-9f89-e176fecf7535.png" alt="聲動跳龍樁" class="project-image">
+                        <div class="project-carousel" data-project="sound-jump-dragon">
+                            <div class="project-carousel-container">
+                                <div class="project-carousel-slide">
+                                    <img src="cadaba03-51ce-4e49-9f89-e176fecf7535.png" alt="聲動跳龍樁" class="project-image">
+                                </div>
+                                <div class="project-carousel-slide">
+                                    <img src="5e99abe6-18fe-4e9f-a5b7-7babe47f2298.png" alt="聲動跳龍樁展場實況" class="project-image">
+                                </div>
+                                <div class="project-carousel-slide">
+                                    <img src="78ca08b0-1fc5-4fbf-944e-85ecf043e1da.png" alt="聲動跳龍樁遊戲畫面" class="project-image">
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev" onclick="event.stopPropagation(); prevSlide('sound-jump-dragon')">‹</button>
+                            <button class="carousel-btn next" onclick="event.stopPropagation(); nextSlide('sound-jump-dragon')">›</button>
+                            <div class="carousel-indicators">
+                                <span class="carousel-indicator active" onclick="event.stopPropagation(); goToSlide('sound-jump-dragon', 0)"></span>
+                                <span class="carousel-indicator" onclick="event.stopPropagation(); goToSlide('sound-jump-dragon', 1)"></span>
+                                <span class="carousel-indicator" onclick="event.stopPropagation(); goToSlide('sound-jump-dragon', 2)"></span>
+                            </div>
+                        </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold text-gray-800 mb-3">聲動跳龍樁 SoundJumpDragon</h3>
                             <p class="text-gray-600 mb-4">結合台灣民俗文化與聲音互動技術的互動藝術遊戲，於台灣多座國際機場常設展出。</p>
@@ -758,7 +866,26 @@
                 
                 <div class="stagger-animation">
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openProjectModal('housing-prediction')">
-                        <img src="aay5y-gp5v6.png" alt="房屋出租預測模型" class="project-image">
+                        <div class="project-carousel" data-project="housing-prediction">
+                            <div class="project-carousel-container">
+                                <div class="project-carousel-slide">
+                                    <img src="aay5y-gp5v6.png" alt="房屋出租預測模型" class="project-image">
+                                </div>
+                                <div class="project-carousel-slide">
+                                    <img src="220953.png" alt="XGBoost模型結果" class="project-image">
+                                </div>
+                                <div class="project-carousel-slide">
+                                    <img src="image88888.png" alt="特徵重要性分析" class="project-image">
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev" onclick="event.stopPropagation(); prevSlide('housing-prediction')">‹</button>
+                            <button class="carousel-btn next" onclick="event.stopPropagation(); nextSlide('housing-prediction')">›</button>
+                            <div class="carousel-indicators">
+                                <span class="carousel-indicator active" onclick="event.stopPropagation(); goToSlide('housing-prediction', 0)"></span>
+                                <span class="carousel-indicator" onclick="event.stopPropagation(); goToSlide('housing-prediction', 1)"></span>
+                                <span class="carousel-indicator" onclick="event.stopPropagation(); goToSlide('housing-prediction', 2)"></span>
+                            </div>
+                        </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold text-gray-800 mb-3">房屋出租速度預測</h3>
                             <p class="text-gray-600 mb-4">使用XGBoost機器學習模型分析租屋市場，預測房屋出租速度的數據科學專案。</p>
@@ -774,7 +901,22 @@
                 
                 <div class="stagger-animation">
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openProjectModal('virtual-senior')">
-                        <img src="982728.png" alt="虛擬學長姐模型" class="project-image">
+                        <div class="project-carousel" data-project="virtual-senior">
+                            <div class="project-carousel-container">
+                                <div class="project-carousel-slide">
+                                    <img src="982728.png" alt="虛擬學長姐模型" class="project-image">
+                                </div>
+                                <div class="project-carousel-slide">
+                                    <img src="9888.png" alt="AI虛擬學伴平台" class="project-image">
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev" onclick="event.stopPropagation(); prevSlide('virtual-senior')">‹</button>
+                            <button class="carousel-btn next" onclick="event.stopPropagation(); nextSlide('virtual-senior')">›</button>
+                            <div class="carousel-indicators">
+                                <span class="carousel-indicator active" onclick="event.stopPropagation(); goToSlide('virtual-senior', 0)"></span>
+                                <span class="carousel-indicator" onclick="event.stopPropagation(); goToSlide('virtual-senior', 1)"></span>
+                            </div>
+                        </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold text-gray-800 mb-3">虛擬學長姐 AI模型</h3>
                             <p class="text-gray-600 mb-4">基於GPT-3.5 fine-tuning的虛擬學習助理，提供個性化學習指導與生涯規劃建議。</p>
@@ -789,7 +931,26 @@
                 
                 <div class="stagger-animation">
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openProjectModal('ai-fitness')">
-                        <img src="889889.png" alt="AI運動賦能系統" class="project-image">
+                        <div class="project-carousel" data-project="ai-fitness">
+                            <div class="project-carousel-container">
+                                <div class="project-carousel-slide">
+                                    <img src="889889.png" alt="AI運動賦能系統" class="project-image">
+                                </div>
+                                <div class="project-carousel-slide">
+                                    <img src="image09.png" alt="AI運動賦能系統詳細" class="project-image">
+                                </div>
+                                <div class="project-carousel-slide">
+                                    <img src="IMG_0932.jpg" alt="實驗設備" class="project-image">
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev" onclick="event.stopPropagation(); prevSlide('ai-fitness')">‹</button>
+                            <button class="carousel-btn next" onclick="event.stopPropagation(); nextSlide('ai-fitness')">›</button>
+                            <div class="carousel-indicators">
+                                <span class="carousel-indicator active" onclick="event.stopPropagation(); goToSlide('ai-fitness', 0)"></span>
+                                <span class="carousel-indicator" onclick="event.stopPropagation(); goToSlide('ai-fitness', 1)"></span>
+                                <span class="carousel-indicator" onclick="event.stopPropagation(); goToSlide('ai-fitness', 2)"></span>
+                            </div>
+                        </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold text-gray-800 mb-3">AI運動賦能系統</h3>
                             <p class="text-gray-600 mb-4">結合Unity遊戲引擎與AI虛擬教練，透過遊戲化提升運動參與度的創新系統。</p>
@@ -805,7 +966,22 @@
                 
                 <div class="stagger-animation">
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openProjectModal('ai-learning-companion')">
-                        <img src="9888.png" alt="AI虛擬學伴平台" class="project-image">
+                        <div class="project-carousel" data-project="ai-learning-companion">
+                            <div class="project-carousel-container">
+                                <div class="project-carousel-slide">
+                                    <img src="9888.png" alt="AI虛擬學伴平台" class="project-image">
+                                </div>
+                                <div class="project-carousel-slide">
+                                    <img src="982728.png" alt="虛擬學長姐模型" class="project-image">
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev" onclick="event.stopPropagation(); prevSlide('ai-learning-companion')">‹</button>
+                            <button class="carousel-btn next" onclick="event.stopPropagation(); nextSlide('ai-learning-companion')">›</button>
+                            <div class="carousel-indicators">
+                                <span class="carousel-indicator active" onclick="event.stopPropagation(); goToSlide('ai-learning-companion', 0)"></span>
+                                <span class="carousel-indicator" onclick="event.stopPropagation(); goToSlide('ai-learning-companion', 1)"></span>
+                            </div>
+                        </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold text-gray-800 mb-3">AI虛擬學伴平台</h3>
                             <p class="text-gray-600 mb-4">利用SillyTavern與GPT-4打造的智能學習夥伴，有效提升學習成效與動機。</p>
@@ -820,7 +996,16 @@
                 
                 <div class="stagger-animation">
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openProjectModal('ai-music-book')">
-                        <img src="1B5FCA12-5ECE-42A4-A18F-2249390EBE0E.jpg" alt="AI音樂夢工廠書籍" class="project-image">
+                        <div class="project-carousel" data-project="ai-music-book">
+                            <div class="project-carousel-container">
+                                <div class="project-carousel-slide">
+                                    <img src="1B5FCA12-5ECE-42A4-A18F-2249390EBE0E.jpg" alt="AI音樂夢工廠書籍" class="project-image">
+                                </div>
+                            </div>
+                            <div class="carousel-indicators">
+                                <span class="carousel-indicator active" onclick="event.stopPropagation(); goToSlide('ai-music-book', 0)"></span>
+                            </div>
+                        </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold text-gray-800 mb-3">AI音樂夢工廠</h3>
                             <p class="text-gray-600 mb-4">出版高中微學程教科書，教授AI音樂創作技術，推廣AI在音樂教育的應用。</p>
@@ -835,7 +1020,16 @@
                 
                 <div class="stagger-animation">
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openProjectModal('unity-ml-agent')">
-                        <img src="990990.png" alt="Unity ML-Agent專案" class="project-image">
+                        <div class="project-carousel" data-project="unity-ml-agent">
+                            <div class="project-carousel-container">
+                                <div class="project-carousel-slide">
+                                    <img src="990990.png" alt="Unity ML-Agent專案" class="project-image">
+                                </div>
+                            </div>
+                            <div class="carousel-indicators">
+                                <span class="carousel-indicator active" onclick="event.stopPropagation(); goToSlide('unity-ml-agent', 0)"></span>
+                            </div>
+                        </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold text-gray-800 mb-3">Unity ML-Agent教學</h3>
                             <p class="text-gray-600 mb-4">利用Unity ML-Agent平台研究與教授強化學習技術，結合遊戲開發與AI。</p>
@@ -1082,23 +1276,32 @@
                     <div class="stagger-animation">
                         <div class="bg-gray-50 p-8 rounded-lg">
                             <h4 class="text-xl font-semibold text-gray-800 mb-6">快速聯絡</h4>
-                            <form class="space-y-4">
+                            <form id="contact-form" class="space-y-4">
                                 <div>
-                                    <label class="block text-gray-700 text-sm font-medium mb-2">姓名</label>
-                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
+                                    <label class="block text-gray-700 text-sm font-medium mb-2">姓名 *</label>
+                                    <input type="text" id="user_name" name="user_name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
                                 </div>
                                 <div>
-                                    <label class="block text-gray-700 text-sm font-medium mb-2">Email</label>
-                                    <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
+                                    <label class="block text-gray-700 text-sm font-medium mb-2">Email *</label>
+                                    <input type="email" id="user_email" name="user_email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
                                 </div>
                                 <div>
-                                    <label class="block text-gray-700 text-sm font-medium mb-2">訊息</label>
-                                    <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"></textarea>
+                                    <label class="block text-gray-700 text-sm font-medium mb-2">訊息 *</label>
+                                    <textarea rows="4" id="message" name="message" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"></textarea>
                                 </div>
-                                <button type="submit" class="w-full bg-purple-600 text-white py-3 px-6 rounded-lg hover:bg-purple-700 transition-colors duration-300">
-                                    發送訊息
+                                <button type="submit" id="submit-btn" class="w-full bg-purple-600 text-white py-3 px-6 rounded-lg hover:bg-purple-700 transition-colors duration-300">
+                                    <span id="btn-text">發送訊息</span>
+                                    <span id="btn-loading" class="hidden">發送中...</span>
                                 </button>
                             </form>
+                            <div id="form-status" class="mt-4 text-center hidden">
+                                <div id="success-message" class="text-green-600 font-medium hidden">
+                                    <i class="fas fa-check-circle mr-2"></i>訊息已成功於我的Email！我會盡快回覆您。
+                                </div>
+                                <div id="error-message" class="text-red-600 font-medium hidden">
+                                    <i class="fas fa-exclamation-circle mr-2"></i>發送失敗，請稍後再試或直接發送郵件至 jeremy641@gmail.com
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1832,6 +2035,137 @@
             lightboxImage.src = imageSrc;
             lightboxOverlay.classList.add('visible');
         }
+
+        // Project Carousel Functions
+        const carouselStates = {};
+
+        // Initialize carousel states
+        document.querySelectorAll('.project-carousel').forEach(carousel => {
+            const projectId = carousel.getAttribute('data-project');
+            const slides = carousel.querySelectorAll('.project-carousel-slide');
+            carouselStates[projectId] = {
+                currentSlide: 0,
+                totalSlides: slides.length
+            };
+        });
+
+        function updateCarousel(projectId) {
+            const carousel = document.querySelector(`[data-project="${projectId}"]`);
+            const container = carousel.querySelector('.project-carousel-container');
+            const indicators = carousel.querySelectorAll('.carousel-indicator');
+            const state = carouselStates[projectId];
+            
+            // Update container position
+            const translateX = -state.currentSlide * 100;
+            container.style.transform = `translateX(${translateX}%)`;
+            
+            // Update indicators
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === state.currentSlide);
+            });
+        }
+
+        function nextSlide(projectId) {
+            const state = carouselStates[projectId];
+            state.currentSlide = (state.currentSlide + 1) % state.totalSlides;
+            updateCarousel(projectId);
+        }
+
+        function prevSlide(projectId) {
+            const state = carouselStates[projectId];
+            state.currentSlide = (state.currentSlide - 1 + state.totalSlides) % state.totalSlides;
+            updateCarousel(projectId);
+        }
+
+        function goToSlide(projectId, slideIndex) {
+            const state = carouselStates[projectId];
+            state.currentSlide = slideIndex;
+            updateCarousel(projectId);
+        }
+
+        // Auto-play carousel (optional)
+        function startAutoPlay(projectId, interval = 5000) {
+            setInterval(() => {
+                nextSlide(projectId);
+            }, interval);
+        }
+
+        // Initialize carousels
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all carousels
+            Object.keys(carouselStates).forEach(projectId => {
+                updateCarousel(projectId);
+            });
+
+            // Initialize EmailJS
+            emailjs.init("kBbUBCTj5t0lp1h-4"); // EmailJS Public Key
+        });
+
+        // EmailJS Contact Form
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submit-btn');
+            const btnText = document.getElementById('btn-text');
+            const btnLoading = document.getElementById('btn-loading');
+            const formStatus = document.getElementById('form-status');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            
+            // Show loading state
+            btnText.classList.add('hidden');
+            btnLoading.classList.remove('hidden');
+            submitBtn.disabled = true;
+            
+            // Hide previous messages
+            formStatus.classList.add('hidden');
+            successMessage.classList.add('hidden');
+            errorMessage.classList.add('hidden');
+            
+            // Get form data
+            const templateParams = {
+                name: document.getElementById('user_name').value,
+                email: document.getElementById('user_email').value,
+                message: document.getElementById('message').value,
+                to_email: 'jeremy641@gmail.com',
+                subject: '來自個人網站的聯絡訊息 - ' + document.getElementById('user_name').value,
+                sent_time: new Date().toLocaleString('zh-TW', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    timeZone: 'Asia/Taipei'
+                })
+            };
+            
+            // Send email using EmailJS
+            emailjs.send('service_gt8l1g5', 'template_g7q7ftn', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    
+                    // Show success message
+                    formStatus.classList.remove('hidden');
+                    successMessage.classList.remove('hidden');
+                    
+                    // Reset form
+                    document.getElementById('contact-form').reset();
+                    
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    
+                    // Show error message
+                    formStatus.classList.remove('hidden');
+                    errorMessage.classList.remove('hidden');
+                })
+                .finally(function() {
+                    // Reset button state
+                    btnText.classList.remove('hidden');
+                    btnLoading.classList.add('hidden');
+                    submitBtn.disabled = false;
+                });
+        });
     </script>
 </body>
 </html>
