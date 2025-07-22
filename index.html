@@ -422,6 +422,36 @@
             transform: scale(1.05);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
+
+        /* YouTube iframe responsive design */
+        .youtube-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .youtube-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        /* Mobile optimizations for YouTube iframe */
+        @media (max-width: 768px) {
+            .youtube-container {
+                padding-bottom: 56.25%; /* Maintain 16:9 aspect ratio */
+                margin: 1rem 0;
+            }
+            
+            .youtube-container iframe {
+                border-radius: 8px;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -1672,7 +1702,8 @@
                     <div>
                         <h3 class="text-xl font-semibold text-gray-800 mb-4">專案概述</h3>
                         <p class="text-gray-600 mb-4">
-                            聚焦於捷運周邊租屋市場，分析影響出租速度的關鍵因素及趨勢，旨在提高市場資訊透明度。專案利用爬蟲技術收集台灣民間租屋資料，結合QGIS和XGBoost回歸模型進行分析。
+                            聚焦於捷運周邊租屋市場，分析影響出租速度的關鍵因素及趨勢，旨在提高市場資訊透明度。專案利用爬蟲技術收集台灣民間租屋資料，以及來自591租屋網資料集、臺北市資料大平臺、政府開放資料平台的資料
+，結合QGIS和XGBoost回歸模型進行分析。
                         </p>
                         
                         <h3 class="text-xl font-semibold text-gray-800 mb-4">資料分析</h3>
@@ -1882,9 +1913,8 @@
                         
                         <div class="mt-6">
                             <h4 class="font-semibold text-gray-800 mb-2">Demo演示影片</h4>
-                            <div class="relative w-full" style="padding-bottom: 50.44%;">
+                            <div class="youtube-container">
                                 <iframe 
-                                    class="absolute top-0 left-0 w-full h-full rounded-lg"
                                     src="https://www.youtube.com/embed/g1YEaQ7PjIw" 
                                     title="RayCastAgents training (LLM Models) by unity &amp; music by suno" 
                                     frameborder="0" 
@@ -1957,9 +1987,8 @@
                         
                         <div class="mt-6">
                             <h4 class="font-semibold text-gray-800 mb-2">Demo演示影片</h4>
-                            <div class="relative w-full" style="padding-bottom: 36.8%;">
+                            <div class="youtube-container">
                                 <iframe 
-                                    class="absolute top-0 left-0 w-full h-full rounded-lg"
                                     src="https://www.youtube.com/embed/oWPdChJFphw" 
                                     title="龍樁示範" 
                                     frameborder="0" 
