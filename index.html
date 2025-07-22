@@ -298,6 +298,7 @@
                     <a href="#education" class="nav-link text-gray-600 hover:text-gray-900">學歷</a>
                     <a href="#experience" class="nav-link text-gray-600 hover:text-gray-900">經歷</a>
                     <a href="#projects" class="nav-link text-gray-600 hover:text-gray-900">專案</a>
+                    <a href="#awards" class="nav-link text-gray-600 hover:text-gray-900">獎項</a>
                     <a href="#contact" class="nav-link text-gray-600 hover:text-gray-900">聯絡</a>
                 </div>
                 <div class="md:hidden">
@@ -316,6 +317,7 @@
                 <a href="#education" class="block py-2 text-gray-600">學歷</a>
                 <a href="#experience" class="block py-2 text-gray-600">經歷</a>
                 <a href="#projects" class="block py-2 text-gray-600">專案</a>
+                <a href="#awards" class="block py-2 text-gray-600">獎項</a>
                 <a href="#contact" class="block py-2 text-gray-600">聯絡</a>
             </div>
         </div>
@@ -570,7 +572,7 @@
                             <div class="flex-1">
                                 <div class="flex flex-col md:flex-row md:justify-between md:items-start">
                                     <div>
-                                        <h3 class="text-xl font-semibold text-gray-800">講師暨講師培訓講師</h3>
+                                        <h3 class="text-xl font-semibold text-gray-800">講師暨種子培訓講師</h3>
                                         <p class="text-purple-600 font-medium">核果資訊學苑 Nuts Institute</p>
                                     </div>
                                     <span class="text-gray-500 text-sm mt-2 md:mt-0">2025 - 現在</span>
@@ -681,6 +683,29 @@
                 <div class="timeline-item stagger-animation">
                     <div class="bg-white p-6 rounded-lg shadow-lg card-hover">
                         <div class="flex items-start gap-4 mb-4">
+                            <img src="chenko.png" alt="建國國小 Logo" class="company-logo">
+                            <div class="flex-1">
+                                <div class="flex flex-col md:flex-row md:justify-between md:items-start">
+                                    <div>
+                                        <h3 class="text-xl font-semibold text-gray-800">音樂與遊戲創作社團講師</h3>
+                                        <p class="text-purple-600 font-medium">桃園市立建國國小</p>
+                                    </div>
+                                    <span class="text-gray-500 text-sm mt-2 md:mt-0">2020 - 2023</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• 教授 Scratch、Micro:bit 程式設計課程</li>
+                            <li>• Web/Unity 遊戲開發教學</li>
+                            <li>• 數位音樂與 AI 跨域課程設計</li>
+                            <li>• 培養學生創意思維與邏輯能力</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item stagger-animation">
+                    <div class="bg-white p-6 rounded-lg shadow-lg card-hover">
+                        <div class="flex items-start gap-4 mb-4">
                             <img src="4-16237396-844-logo.png" alt="泰宇出版社 Logo" class="company-logo">
                             <div class="flex-1">
                                 <div class="flex flex-col md:flex-row md:justify-between md:items-start">
@@ -712,6 +737,39 @@
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="stagger-animation">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openProjectModal('sound-jump-dragon')">
+                        <img src="0b88bbf3-2825-4c24-9e59-b8ca55032fb2.png" alt="聲動跳龍樁" class="project-image">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">聲動跳龍樁 SoundJumpDragon</h3>
+                            <p class="text-gray-600 mb-4">結合台灣民俗文化與聲音互動技術的互動藝術遊戲，現於台灣多座國際機場常設展出。</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">Unity</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">PHP</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">互動藝術</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">文化科技</span>
+                            </div>
+                            <button class="text-purple-600 font-medium hover:underline">查看詳細 →</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stagger-animation">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openProjectModal('housing-prediction')">
+                        <img src="aay5y-gp5v6.png" alt="房屋出租預測模型" class="project-image">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">房屋出租速度預測</h3>
+                            <p class="text-gray-600 mb-4">使用XGBoost機器學習模型分析租屋市場，預測房屋出租速度的數據科學專案。</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">XGBoost</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">數據分析</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">機器學習</span>
+                            </div>
+                            <button class="text-purple-600 font-medium hover:underline">查看詳細 →</button>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="stagger-animation">
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openProjectModal('virtual-senior')">
                         <img src="982728.png" alt="虛擬學長姐模型" class="project-image">
@@ -759,22 +817,6 @@
                 </div>
                 
                 <div class="stagger-animation">
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openProjectModal('housing-prediction')">
-                        <img src="aay5y-gp5v6.png" alt="房屋出租預測模型" class="project-image">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-3">房屋出租速度預測</h3>
-                            <p class="text-gray-600 mb-4">使用XGBoost機器學習模型分析租屋市場，預測房屋出租速度的數據科學專案。</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">XGBoost</span>
-                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">數據分析</span>
-                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">機器學習</span>
-                            </div>
-                            <button class="text-purple-600 font-medium hover:underline">查看詳細 →</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="stagger-animation">
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openProjectModal('ai-music-book')">
                         <img src="1B5FCA12-5ECE-42A4-A18F-2249390EBE0E.jpg" alt="AI音樂夢工廠書籍" class="project-image">
                         <div class="p-6">
@@ -799,23 +841,6 @@
                                 <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">強化學習</span>
                                 <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">Unity</span>
                                 <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">教學</span>
-                            </div>
-                            <button class="text-purple-600 font-medium hover:underline">查看詳細 →</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="stagger-animation">
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover cursor-pointer" onclick="openProjectModal('sound-jump-dragon')">
-                        <img src="0b88bbf3-2825-4c24-9e59-b8ca55032fb2.png" alt="聲動跳龍樁" class="project-image">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-3">聲動跳龍樁 SoundJumpDragon</h3>
-                            <p class="text-gray-600 mb-4">結合台灣民俗文化與聲音互動技術的互動藝術遊戲，現於台灣多座國際機場常設展出。</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">Unity</span>
-                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">PHP</span>
-                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">互動藝術</span>
-                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">文化科技</span>
                             </div>
                             <button class="text-purple-600 font-medium hover:underline">查看詳細 →</button>
                         </div>
@@ -1461,7 +1486,7 @@
             <button class="project-modal-close" onclick="closeProjectModal('unity-ml-agent')">&times;</button>
             <div class="p-8">
                 <div class="text-center mb-8">
-                    <img src="IMG_6118.jpg" alt="Unity ML-Agent專案" class="w-64 h-48 object-cover rounded-lg mx-auto mb-4">
+                    <img src="990990.png" alt="Unity ML-Agent專案" class="w-64 h-48 object-cover rounded-lg mx-auto mb-4">
                     <h2 class="text-3xl font-bold text-gray-800 mb-4">Unity ML-Agent教學專案</h2>
                     <div class="flex flex-wrap justify-center gap-2 mb-6">
                         <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">強化學習</span>
