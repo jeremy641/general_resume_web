@@ -452,16 +452,19 @@
         .project-carousel {
             position: relative;
             overflow: hidden;
+            height: 200px; /* 新增：與 project-image 高度一致 */
         }
 
         .project-carousel-container {
             display: flex;
             transition: transform 0.3s ease;
+            height: 100%; /* 新增：填滿容器高度 */
         }
 
         .project-carousel-slide {
             min-width: 100%;
             flex-shrink: 0;
+            height: 100%; /* 新增：填滿容器高度 */
         }
 
         .carousel-btn {
@@ -1264,19 +1267,7 @@
                                     <img src="首頁.png" alt="即食一嗑首頁" class="project-image">
                                 </div>
                                 <div class="project-carousel-slide">
-                                    <img src="首頁02.png" alt="即食一嗑首頁02" class="project-image">
-                                </div>
-                                <div class="project-carousel-slide">
-                                    <img src="服務介紹.png" alt="即食一嗑服務介紹" class="project-image">
-                                </div>
-                                <div class="project-carousel-slide">
-                                    <img src="APP下載.png" alt="即食一嗑APP下載" class="project-image">
-                                </div>
-                                <div class="project-carousel-slide">
                                     <img src="新品推薦.png" alt="即食一嗑新品推薦" class="project-image">
-                                </div>
-                                <div class="project-carousel-slide">
-                                    <img src="最新消息.png" alt="即食一嗑最新消息" class="project-image">
                                 </div>
                             </div>
                             <button class="carousel-btn prev" onclick="event.stopPropagation(); prevSlide('instant-food-platform')">‹</button>
@@ -1284,10 +1275,6 @@
                             <div class="carousel-indicators">
                                 <span class="carousel-indicator active" onclick="event.stopPropagation(); goToSlide('instant-food-platform', 0)"></span>
                                 <span class="carousel-indicator" onclick="event.stopPropagation(); goToSlide('instant-food-platform', 1)"></span>
-                                <span class="carousel-indicator" onclick="event.stopPropagation(); goToSlide('instant-food-platform', 2)"></span>
-                                <span class="carousel-indicator" onclick="event.stopPropagation(); goToSlide('instant-food-platform', 3)"></span>
-                                <span class="carousel-indicator" onclick="event.stopPropagation(); goToSlide('instant-food-platform', 4)"></span>
-                                <span class="carousel-indicator" onclick="event.stopPropagation(); goToSlide('instant-food-platform', 5)"></span>
                             </div>
                         </div>
                         <div class="p-6">
@@ -1303,8 +1290,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
     </section>
 
     <!-- Blog Section -->
@@ -1678,6 +1663,253 @@
     </footer>
 
     <!-- Project Detail Modals -->
+
+<!-- 即食一嗑專案詳細介紹 Modal -->
+    <div class="project-modal" id="instant-food-platform-modal">
+        <div class="project-modal-content">
+            <button class="project-modal-close" onclick="closeProjectModal('instant-food-platform')">&times;</button>
+            <div class="p-8">
+                <!-- Header Section -->
+                <div class="text-center mb-8">
+                    <img src="首頁.png" alt="即食一嗑首頁" class="w-64 h-48 object-cover rounded-lg mx-auto mb-4">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">即食一嗑 - 即期品享食平台</h2>
+                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">RWD響應式設計</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">社會創新</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">永續發展</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">惜食平台</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">PHP</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-600 rounded-full">JavaScript</span>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">「愛食惜食，共創雙贏」</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            即食一嗑是以「惜食」為目的之平台，商家藉平台將賣剩的食物以低於市價的方式賣出，而非直接丟棄；消費者透過此平台得知有哪些商家釋出剩食，以預定的方式向商家為要約承諾之通知，再前往該商店領取食物。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Main Content -->
+                <div class="space-y-12">
+                    
+                    <!-- 專案時間與背景 -->
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
+                                <i class="fas fa-calendar-alt text-blue-600 mr-3"></i>專案資訊
+                            </h3>
+                            <div class="space-y-4">
+                                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-blue-400">
+                                    <h4 class="font-semibold text-gray-800 mb-2">專案時間</h4>
+                                    <p class="text-gray-600">2022.01 - 2022.06</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-400">
+                                    <h4 class="font-semibold text-gray-800 mb-2">公司角色</h4>
+                                    <p class="text-gray-600">技術長 / 共同創辦人</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-green-400">
+                                    <h4 class="font-semibold text-gray-800 mb-2">進駐單位</h4>
+                                    <p class="text-gray-600">社創中心第六期進駐團隊</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
+                                <i class="fas fa-leaf text-green-600 mr-3"></i>社會價值
+                            </h3>
+                            <div class="bg-gradient-to-br from-green-50 to-blue-50 p-6 rounded-lg">
+                                <div class="grid grid-cols-2 gap-4 text-center">
+                                    <div>
+                                        <div class="text-orange-600 text-2xl font-bold">減少剩食</div>
+                                        <p class="text-sm text-gray-600">台北一年廚餘量約267噸，預估減少11噸的剩餘食品</p>
+                                    </div>
+                                    <div>
+                                        <div class="text-blue-600 text-2xl font-bold">提升企業形象</div>
+                                        <p class="text-sm text-gray-600">協助店家建立社會責任形象</p>
+                                    </div>
+                                    <div>
+                                        <div class="text-green-600 text-2xl font-bold">永續環保</div>
+                                        <p class="text-sm text-gray-600">減少廚餘產生，支持循環經濟</p>
+                                    </div>
+                                    <div>
+                                        <div class="text-red-600 text-2xl font-bold">增加收入</div>
+                                        <p class="text-sm text-gray-600">讓剩食轉化為營收，創造雙贏</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 平台功能展示 -->
+                    <div class="bg-gray-50 p-8 rounded-lg">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-6 text-center flex items-center justify-center">
+                            <i class="fas fa-mobile-alt text-purple-600 mr-3"></i>平台功能特色
+                        </h3>
+                        
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <!-- 首頁功能 -->
+                            <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <img src="首頁02.png" alt="即食一嗑首頁功能" class="w-full h-40 object-cover rounded-lg mb-4 cursor-pointer" onclick="openLightbox(this.src)">
+                                <h4 class="text-lg font-semibold text-gray-800 mb-2">響應式首頁設計</h4>
+                                <p class="text-gray-600 text-sm">RWD響應式網頁設計，能夠在不同設備中自適應畫面大小，達成APP與PC平台一體化</p>
+                            </div>
+                            
+                            <!-- 新品推薦 -->
+                            <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <img src="新品推薦.png" alt="即食一嗑新品推薦" class="w-full h-40 object-cover rounded-lg mb-4 cursor-pointer" onclick="openLightbox(this.src)">
+                                <h4 class="text-lg font-semibold text-gray-800 mb-2">智能推薦系統</h4>
+                                <p class="text-gray-600 text-sm">依據折扣比例與剩餘時間，智能推薦最優惠的即期商品給消費者</p>
+                            </div>
+                            
+                            <!-- 服務介紹 -->
+                            <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <img src="服務介紹.png" alt="即食一嗑服務介紹" class="w-full h-40 object-cover rounded-lg mb-4 cursor-pointer" onclick="openLightbox(this.src)">
+                                <h4 class="text-lg font-semibold text-gray-800 mb-2">服務流程說明</h4>
+                                <p class="text-gray-600 text-sm">清楚的服務介紹，讓使用者了解平台運作模式與惜食理念</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 技術架構 -->
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
+                                <i class="fas fa-cogs text-purple-600 mr-3"></i>技術實現
+                            </h3>
+                            
+                            <div class="space-y-4">
+                                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-400">
+                                    <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                        <i class="fas fa-desktop text-purple-600 mr-2"></i>前端技術
+                                    </h4>
+                                    <p class="text-gray-600 text-sm">響應式網頁設計(RWD)，支援多平台無縫切換，提供一致的使用體驗</p>
+                                </div>
+                                
+                                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-blue-400">
+                                    <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                        <i class="fas fa-server text-blue-600 mr-2"></i>後端系統
+                                    </h4>
+                                    <p class="text-gray-600 text-sm">PHP後端架構，處理商家與消費者的訂單管理、庫存追蹤</p>
+                                </div>
+                                
+                                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-green-400">
+                                    <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                        <i class="fas fa-credit-card text-green-600 mr-2"></i>支付系統
+                                    </h4>
+                                    <p class="text-gray-600 text-sm">整合多元支付方式，支援信用卡與轉帳，提供彈性的消費選擇</p>
+                                </div>
+                                
+                                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-orange-400">
+                                    <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                        <i class="fas fa-chart-line text-orange-600 mr-2"></i>動態定價
+                                    </h4>
+                                    <p class="text-gray-600 text-sm">即將導入「荷式減價法」，依據逾期時間遞減價格，刺激早期購買</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
+                                <i class="fas fa-mobile-alt text-green-600 mr-3"></i>多平台整合
+                            </h3>
+                            <div class="bg-white p-4 rounded-lg shadow-sm">
+                                <img src="APP下載.png" alt="即食一嗑APP下載頁面" class="w-full rounded-lg shadow-md cursor-pointer mb-4" onclick="openLightbox(this.src)">
+                                <div class="space-y-3">
+                                    <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                                        <i class="fas fa-globe text-blue-600 mr-3"></i>
+                                        <span class="text-gray-700"><strong>網頁版：</strong>完整功能的網頁平台</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                                        <i class="fas fa-mobile-alt text-green-600 mr-3"></i>
+                                        <span class="text-gray-700"><strong>行動版：</strong>APP與網頁一體化設計</span>
+                                    </div>
+                                    <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                                        <i class="fas fa-sync-alt text-purple-600 mr-3"></i>
+                                        <span class="text-gray-700"><strong>同步體驗：</strong>跨平台數據同步更新</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 最新消息與運營 -->
+                    <div class="bg-blue-50 p-8 rounded-lg">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-6 text-center flex items-center justify-center">
+                            <i class="fas fa-newspaper text-blue-600 mr-3"></i>平台運營與推廣
+                        </h3>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <img src="最新消息.png" alt="即食一嗑最新消息" class="w-full rounded-lg shadow-md cursor-pointer mb-4" onclick="openLightbox(this.src)">
+                                <h4 class="text-lg font-semibold text-gray-800 mb-3">內容管理系統</h4>
+                                <ul class="space-y-2 text-gray-700">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-bullhorn text-blue-500 mr-2 mt-1"></i>
+                                        <span>即時更新最新消息與優惠活動</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-store text-blue-500 mr-2 mt-1"></i>
+                                        <span>合作商家資訊與評價系統</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-users text-blue-500 mr-2 mt-1"></i>
+                                        <span>社群分享功能，擴大惜食影響力</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-800 mb-4">團隊介紹影片</h4>
+                                <div class="youtube-container">
+                                    <iframe 
+                                        width="853" 
+                                        height="480" 
+                                        src="https://www.youtube.com/embed/goVvYz7ygOE" 
+                                        title="[社創中心第六期進駐團隊訪談]即食一嗑" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                        referrerpolicy="strict-origin-when-cross-origin" 
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
+                                <p class="text-center text-gray-600 mt-3 italic">社創中心進駐團隊訪談，了解即食一嗑的創業理念與發展願景</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 未來發展 -->
+                    <div class="bg-gradient-to-r from-purple-50 to-blue-50 p-6 rounded-lg border-l-4 border-purple-500">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                            <i class="fas fa-rocket text-purple-600 mr-3"></i>未來發展方向
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-chart-line text-purple-500 mr-2 mt-1"></i>
+                                    <span>導入荷式減價法，優化動態定價機制</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-map-marked-alt text-purple-500 mr-2 mt-1"></i>
+                                    <span>擴大合作商家網絡，覆蓋更多地區</span>
+                                </li>
+                            </ul>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-brain text-purple-500 mr-2 mt-1"></i>
+                                    <span>整合AI推薦算法，提升媒合效率</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-leaf text-purple-500 mr-2 mt-1"></i>
+                                    <span>建立永續生活生態圈，推廣零浪費理念</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <!-- Virtual Senior Modal -->
     <div class="project-modal" id="virtual-senior-modal">
